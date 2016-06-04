@@ -24,7 +24,9 @@ def getPics(url):
     return samples
 def downloadPic(i,samples,set):
 	multiverseID= samples[i].a.attrs['href']
-	cardName = "cardImages/"+samples[i].a.get_text()+"-"+set[:-1]+".jpg"
+	sampleName=samples[i].a.get_text()
+	sampleName=sampleName.replace('/','_')
+	cardName = "cardImages/"+sampleName+"-"+set[:-1]+".jpg"
 	URL = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=%s&type=card" %multiverseID[34:]
 	urllib.urlretrieve(URL, cardName)
 
