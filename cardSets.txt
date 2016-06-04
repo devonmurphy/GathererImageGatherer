@@ -135,7 +135,7 @@ Tenth%20Edition
 The%20Dark
 Theros
 Time%20Spiral
-Time%20Spiral%20&quot;Timeshifted&quot;
+Time%20Spiral%20"Timeshifted";
 Torment
 Ugin's%20Fate%20promos
 Unglued

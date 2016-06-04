@@ -1,25 +1,14 @@
-import urllib
-newSets = open('newSets.txt','r+')
+from bs4 import BeautifulSoup
+from urllib2 import urlopen
+import requests
 
+url="http://gatherer.wizards.com/Pages/Search/Default.aspx?page=0&set=%5B\"Worldwake\"%5D"
 
-with open('cardSets.txt') as sets:
-	for line in sets:
-		buffer =""
-		for letter in range(0,len(line)):
-			if(line[letter] == '"'):
-				letter = len(line)
-			elif(line[letter]=="\n"):
-				letter = len(line)+1
-			else:
-				buffer+=line[letter]
-			if(letter == len(line)):
-				newSets.write(buffer+"\n")
-				
-newSets.close
-sets.close
-"""
-for x in range(1,410064):
-    URL = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=%d&type=card" %x
-    urllib.urlretrieve(URL, "cardImages/%d.jpg" %x)
-"""
+result = requests.get(url)
+html = result.content
+soup = BeautifulSoup(html,"lxml")
+samples = soup.find_all("div","cardInfo")
+
+print(samples[0])
+
 
