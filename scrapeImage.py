@@ -41,6 +41,5 @@ with open('cardSets.txt') as sets:
 					downloadPic(p,samples,line)
 			else:
 				n=6
-				print "exiting loop"
 			lastFirstPic=firstPic
 			n+=1	
