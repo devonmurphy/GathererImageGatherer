@@ -10,7 +10,9 @@ soup = BeautifulSoup(html,"lxml")
 samples = soup.find_all("span","cardTitle")
 id =[]
 for i in range(0,len(samples)):
-	hold= samples[i].a.attrs['href']
-	id.append(hold[34:])
- 	URL = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=%s&type=card" %hold[34:]
-	urllib.urlretrieve(URL, "cardImages/%s.jpg" %hold[34:])
+	multiverseID= samples[i].a.attrs['href']
+ 	cardName = "cardImages/"+samples[i].a.get_text()+".jpg"
+	URL = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=%s&type=card" %multiverseID[34:]
+	
+	urllib.urlretrieve(URL, cardName)
+	
