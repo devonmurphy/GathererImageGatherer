@@ -2,17 +2,47 @@ from bs4 import BeautifulSoup
 import urllib
 import requests
 
-url="http://gatherer.wizards.com/Pages/Search/Default.aspx?page=0&set=%5B\"Worldwake\"%5D"
 
-result = requests.get(url)
-html = result.content
-soup = BeautifulSoup(html,"lxml")
-samples = soup.find_all("span","cardTitle")
-id =[]
-for i in range(0,len(samples)):
+n=0
+samples = []
+lastFirstPic = ""
+
+def getFirstPic(url):
+    result = requests.get(url)
+    html = result.content
+    soup = BeautifulSoup(html,"lxml")
+    hold=soup.find("span","cardTitle")
+    if(hold):
+        return hold.a.get_text()
+    else:
+        return ""
+def getPics(url):
+    result = requests.get(url)
+    html = result.content
+    soup = BeautifulSoup(html,"lxml")
+    samples = soup.find_all("span","cardTitle")
+    return samples
+"""
+def downloadPic(i):
 	multiverseID= samples[i].a.attrs['href']
- 	cardName = "cardImages/"+samples[i].a.get_text()+".jpg"
+	cardName = "cardImages/"+samples[i].a.get_text()+".jpg"
 	URL = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=%s&type=card" %multiverseID[34:]
-	
 	urllib.urlretrieve(URL, cardName)
-	
+"""
+
+with open('cardSets.txt') as sets:
+	for line in sets:
+		n=0
+		while(n<5):
+			URL = "http://gatherer.wizards.com/Pages/Search/Default.aspx?page="+str(n)+"&set=%5B\""+line[:-1]+"\"%5D"
+			firstPic=getFirstPic(URL)
+			print "First:  "+firstPic
+			print "Last:  "+lastFirstPic
+			if(firstPic!=lastFirstPic):
+				print URL
+				##samples = getPics(URL)
+			else:
+				n=6
+				print "exiting loop"
+			lastFirstPic=firstPic
+			n+=1	
