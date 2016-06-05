@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 import urllib
 import requests
-
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 n=0
 samples = []
