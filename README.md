@@ -1,14 +1,14 @@
 # GathererImageGatherer
 
 
-This python program will download all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages with their name and set.
+scrapeImage.py will download all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages with their name and set.
 
-To run this program you will need the libraries BeautifulSoup and requests.
+buildDatabase.py will create a postgres database of card name, set, and perceptual hash of the artwork from the images downloaded with scrapeImage.py
 
-You can get them by running these commands in terminal.
+To run these programs you will need the libraries BeautifulSoup, requests, imagehash, PIL, and psycopg2. 
 
-pip install beautifulsoup4
+You will also need a postgres database named cardimages with a table called phash. These sql statements will do that for you.
 
-pip install requests
-
+create database cardimages;
+create table phash values(name text, set text, hash text);
 
