@@ -35,7 +35,7 @@ def getCardInfo(card):
 yourpath = 'cardImages/'
 con = psycopg2.connect(database='cardimages', user='Devon')
 cur = con.cursor()
-
+makeDb(con,cur)
 for root, dirs, files in os.walk(yourpath, topdown=False):
     for name in files:
 	hold =os.path.join(root, name)

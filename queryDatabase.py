@@ -2,10 +2,10 @@
 import os
 import sys
 import imagehash
-import numpy
-from PIL import Image
+import numpy as np
 import psycopg2
 import math
+
 
 def getValuesFromDb(con,cur):
 	global hashes
@@ -30,8 +30,10 @@ def hammingDistance(a,b):
 	count=0
 	a=str(a)
 	b=str(b)
-	if(len(a)!=len(b))
-		break
+	if(len(a)!=len(b)):
+		print "Error: String lengths don't match"
+		sys.exit()
+		
 	for n in range (0,len(a)):
 		if(a[n]!=b[n]):
 			count+=1	
