@@ -10,5 +10,5 @@ To run these programs you will need the libraries BeautifulSoup, requests, image
 You will also need a postgres database named cardimages with a table called phash. These sql statements will do that for you.
 
 create database cardimages;
-create table phash values(name text, set text, hash text);
+create table phash(name text, set text, hash text);
 
