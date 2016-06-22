@@ -1,6 +1,6 @@
 # GathererImageGatherer
 
-This project downloads all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages/ with their name and set
+This project downloads all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages/ with their name and set.
 
 The images can be used to build a database of perceptual hashes.
 
