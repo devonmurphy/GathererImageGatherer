@@ -4,9 +4,9 @@ This project downloads all the card images from http://gatherer.wizards.com/Page
 
 The images can be used to build a database of perceptual hashes.
 
-Since each card artwork has a unique perceptual hash, they can be compared with new pictures of cards to identify them. 
+Since each card artwork has a unique perceptual hash, they can be compared with perceptual hashes of a card in a picture to identify them. 
 
-If a card is identified, the information can be input into a search engine for the user.
+If a card is identified, the information can be input into http://shop.tcgplayer.com/magic for the user to quickly get the price.
 
 #Dependencies
 To run these programs you will need the python libraries BeautifulSoup, requests, imagehash, PIL, and psycopg2. 
