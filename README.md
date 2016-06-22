@@ -2,10 +2,13 @@
 
 This project downloads all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages/ with their name and set
 
-These images are used to build a database of perceptual hashes of the artwork along with card name and set. 
+The images can be used to build a database of perceptual hashes.
+
+https://en.wikipedia.org/wiki/Perceptual_hashing
 
 Since each artwork has a unique hash, they can be compared with new pictures of cards to identify them. 
 
+If a card is identified, the information can be input into a search engine for the user.
 
 #Dependencies
 To run these programs you will need the python libraries BeautifulSoup, requests, imagehash, PIL, and psycopg2. 
