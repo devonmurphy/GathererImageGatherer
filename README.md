@@ -28,5 +28,12 @@ create table phash(name text, set text, hash text);
 <pre>
 sudo python buildDatabase.py
 </pre>
-Populates a table named phash in a SQLdatabase called cardimages with card name, set, and a perceptual hash of the artwork from the images downloaded with scrapeImages.py
+Populates a postgresql database with card name, set, and a perceptual hash of the artwork from the images downloaded with scrapeImages.py
+
+**Test A Card**
+<pre>
+sudo python queryDatabase.py
+</pre>
+
+
 
