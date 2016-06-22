@@ -4,9 +4,7 @@ This project downloads all the card images from http://gatherer.wizards.com/Page
 
 The images can be used to build a database of perceptual hashes.
 
-https://en.wikipedia.org/wiki/Perceptual_hashing
-
-Since each artwork has a unique hash, they can be compared with new pictures of cards to identify them. 
+Since each card artwork has a unique perceptual hash, they can be compared with new pictures of cards to identify them. 
 
 If a card is identified, the information can be input into a search engine for the user.
 
