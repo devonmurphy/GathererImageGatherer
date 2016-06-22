@@ -24,6 +24,7 @@ sudo python scrapeImages.py
 This downloads all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages/ with their name and set.
 
 The folder of pictures ends up being 1.21 GB and it takes about 25 minutes to download.
+
 **Setup The Database**
 
 Once postgres is installed, create a database and table needed for the python script.
@@ -44,6 +45,3 @@ Populates a postgresql database with card name, set, and a perceptual hash of th
 <pre>
 sudo python queryDatabase.py
 </pre>
-
-
-
