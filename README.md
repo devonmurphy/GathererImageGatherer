@@ -11,14 +11,16 @@ pip install BeautifulSoup requests imagehash PIL psycopg2
 sudo python scrapeImages.py
 </pre>
 
-Download all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages with their name and set.
+This downloads all the card images from http://gatherer.wizards.com/Pages/Default.aspx and saves them in the folder cardImages/ with their name and set.
 
-The folder of pictures ends up being 1.21 GB and takes about 25 minutes to download.
+The folder of pictures ends up being 1.21 GB and it takes about 25 minutes to download.
 **Setup The Database**
 
-Once you have installed postgres, type these commmands to create the database and table needed for the python script.
+Once postgres is installed, create a database and table needed for the python script.
 <pre>
+psql
 create database cardimages;
+\c cardimages
 create table phash(name text, set text, hash text);
 </pre>
 
