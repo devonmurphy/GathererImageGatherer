@@ -10,7 +10,7 @@ import psycopg2
 def getHash(img):
 	normal = Image.open(img).convert('L')
 	crop=normal.crop((17,37,205,150))
-	hash = str(imagehash.average_hash(crop))
+	hash = str(imagehash.phash(crop))
 	return hash
 
 def addToDb(con,cur,name,set,hash):
@@ -35,7 +35,7 @@ def getCardInfo(card):
 yourpath = 'cardImages/'
 con = psycopg2.connect(database='cardimages', user='Devon')
 cur = con.cursor()
-makeDb(con,cur)
+
 for root, dirs, files in os.walk(yourpath, topdown=False):
     for name in files:
 	hold =os.path.join(root, name)
