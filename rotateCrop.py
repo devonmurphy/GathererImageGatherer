@@ -3,6 +3,17 @@ import cv2
 import cv
 import numpy as np
 import math
+import queryDatabase
+from PIL import Image
+import imagehash
+
+def getHash(img):
+    normal = Image.open(img).convert('L')
+    theHash = str(imagehash.phash(normal))
+    return theHash
+
+print getHash("crop.jpg")
+
 
 camera_port =0 
 ramp_frames = 30
@@ -42,7 +53,6 @@ for c in cnts:
 	if len(approx) == 4:
 		screenCnt[i] = approx
                 i+=1
-                print peri
 
 for box in screenCnt:
     ratio = 1 /(cv2.contourArea(screenCnt[0])/cv2.contourArea(screenCnt[box]))
@@ -64,4 +74,8 @@ if(len(screenCnt)!=0):
     rotated = cv2.warpAffine(out, M, (2*img.shape[0],2*img.shape[1]))
     crop = rotated[(int)(mid[1]-rect[1][0]/2):(int)(mid[1]+rect[1][0]/2),(int)(mid[0]-rect[1][1]/2):(int)(mid[0]+rect[1][1]/2)]
     cv2.imwrite("crop.jpg",crop)
-    cv2.imwrite("rotated.jpg",rotated)
+
+
+
+queryDatabase.checkHashes(getHash('crop.jpg'))
+
