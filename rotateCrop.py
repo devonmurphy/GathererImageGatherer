@@ -7,17 +7,12 @@ import queryDatabase
 from PIL import Image
 import imagehash
 
-def getHash(img):
-    normal = Image.open(img).convert('L')
-    theHash = str(imagehash.phash(normal))
-    return theHash
-
-print getHash("crop.jpg")
 
 
+"""
 camera_port =0 
 ramp_frames = 30
-"""
+
 camera = cv2.VideoCapture(camera_port)
 
 def get_image():
@@ -30,6 +25,10 @@ camera_capture = get_image()
 file = "frame.jpg"
 cv2.imwrite(file,camera_capture)
 """
+def getHash(img):
+    image = Image.open(img).convert('L')
+    return str(imagehash.average_hash(image))
+
 img = cv2.imread('kessig.jpg')
 
 orig = img.copy()
@@ -75,7 +74,4 @@ if(len(screenCnt)!=0):
     crop = rotated[(int)(mid[1]-rect[1][0]/2):(int)(mid[1]+rect[1][0]/2),(int)(mid[0]-rect[1][1]/2):(int)(mid[0]+rect[1][1]/2)]
     cv2.imwrite("crop.jpg",crop)
 
-
-
 queryDatabase.checkHashes(getHash('crop.jpg'))
-

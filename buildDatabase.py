@@ -10,7 +10,7 @@ import psycopg2
 def getHash(img):
 	normal = Image.open(img).convert('L')
 	crop=normal.crop((17,37,205,150))
-	hash = str(imagehash.phash(crop))
+	hash = str(imagehash.average_hash(crop))
 	return hash
 
 def addToDb(con,cur,name,set,hash):
