@@ -13,6 +13,17 @@ To run these programs you will need the python libraries BeautifulSoup, requests
 <pre>
 pip install BeautifulSoup requests imagehash PIL psycopg2
 </pre>
+
+<pre>
+git clone https://github.com/eulerto/pg_similarity.git
+cd pg_similarity/
+USE_PGXS=1 make
+USE_PGXS=1 make install
+</pre>
+In postgres:
+<pre>
+CREATE EXTENSION pg_similarity;
+</pre>
 #Use
 **Download Images**
 <pre>
