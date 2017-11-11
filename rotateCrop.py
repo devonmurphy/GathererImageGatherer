@@ -15,8 +15,11 @@ def showImage(img):
     cv2.destroyAllWindows()
 
 def getHash(img):
+        size = 223,310
         normal = Image.open(img).convert('L')
+        normal = normal.resize(size, Image.ANTIALIAS) 
         crop=normal.crop((25,37,195,150))
+        crop.show()
         ahash = str(imagehash.average_hash(crop))
         phash = str(imagehash.phash(crop))
         psimplehash = str(imagehash.phash_simple(crop))
@@ -45,9 +48,12 @@ def findContours(img):
                 screenCnt[i] = approx
                 i+=1
 
+    crop(img,0,screenCnt)
+    '''
     for box in screenCnt:
         ratio = 1 /(cv2.contourArea(screenCnt[0])/cv2.contourArea(screenCnt[box]))
         crop(img,box,screenCnt)
+    '''
 
 # from https://www.pyimagesearch.com/2014/08/25/4-point-opencv-getperspective-transform-example/
 def order_points(pts):
@@ -121,7 +127,7 @@ def crop(img,art, screenCnt):
     box = cv2.boxPoints(rect) 
     box = np.int0(box)
     rotatedCropped = four_point_transform(out,box)
-    showImage(rotatedCropped) 
+    cv2.imwrite('crop.jpg',rotatedCropped)
 
 def crop2(img,art, screenCnt):    
     mask = np.zeros_like(img) 
@@ -159,10 +165,11 @@ def crop2(img,art, screenCnt):
     croppedH = H if H > W else W
     # Final cropped & rotated rectangle
     croppedRotated = cv2.getRectSubPix(cropped, (int(croppedW),int(croppedH)), (size[0]/2, size[1]/2))
-    showImage(croppedRotated)
 
 img = cv2.imread('snappingSailbacks/1.JPG')
 findContours(img)
-#binHash = hex_to_binary(getHash('crop.jpg')[0])
-#print binHash
-#queryDatabase.checkHashes(binHash)
+for i in range(0,2):
+    print "----------------------------------"+str(i)+"--------------------------------------"
+    binHash = hex_to_binary(getHash('crop.jpg')[i])
+    print binHash
+    queryDatabase.checkHashes(binHash,i)

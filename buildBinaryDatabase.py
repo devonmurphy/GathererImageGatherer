@@ -20,8 +20,7 @@ def getHash(img):
 	dhash = str(imagehash.dhash(crop))
 	vertdhash = str(imagehash.dhash_vertical(crop))
 	whash = str(imagehash.whash(crop))
-        print ahash
-	return ahash,phash,psimplehash,phash,vertdhash,whash
+	return ahash,phash,psimplehash,dhash,vertdhash,whash 
 
 def addToDb(name,set,hashes):
         print hashes,"---",name,"---",set
@@ -32,6 +31,16 @@ def addToDb(name,set,hashes):
         command+=");"
 	cur.execute(command)          
 	con.commit()
+
+def addHexToDb(name,set,hashes):
+        print hashes,"---",name,"---",set
+        command = "INSERT INTO hashes (name,set,ahash,phash,psimplehash,dhash,vertdhash,whash) VALUES('"
+        command +=name+"','"+set+"'"
+        for i in range (0,6):
+            command+=",decode('"+hashes[i]+"','hex')"
+        command+=");"
+        cur.execute(command)
+        con.commit()
 
 def getCardInfo(card):
 	card =card[11:]
@@ -48,13 +57,13 @@ def getCardInfo(card):
 con = psycopg2.connect(database='cardimages', user='Devon')
 cur = con.cursor()
 
-'''
 cur.execute("delete from hashes")
+cur.execute("delete from binaryhashes")
 con.commit()
-'''
 
 for root, dirs, files in os.walk('cardImages/', topdown=False):
     for name in files:
 	hold =os.path.join(root, name)
         if(name!="___images-go-here.txt"):
 	    addToDb(getCardInfo(hold)[0],getCardInfo(hold)[1],getHash(hold))
+	    addHexToDb(getCardInfo(hold)[0],getCardInfo(hold)[1],getHash(hold))
