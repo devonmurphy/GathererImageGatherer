@@ -65,5 +65,7 @@ for root, dirs, files in os.walk('cardImages/', topdown=False):
     for name in files:
 	hold =os.path.join(root, name)
         if(name!="___images-go-here.txt"):
-	    addToDb(getCardInfo(hold)[0],getCardInfo(hold)[1],getHash(hold))
-	    addHexToDb(getCardInfo(hold)[0],getCardInfo(hold)[1],getHash(hold))
+            hashToAdd = getHash(hold)
+            cardInfo = getCardInfo(hold)
+	    addToDb(cardInfo[0],cardInfo[1],hashToAdd)
+	    addHexToDb(cardInfo[0],cardInfo[1],hashToAdd)
