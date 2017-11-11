@@ -7,6 +7,24 @@ import queryDatabase
 from PIL import Image
 import imagehash
 
+def hex_to_binary(hashString):
+    return format(int(hashString,16),'0>64b')
+
+def showImage(img):
+    cv2.imshow('img',img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def getHash(img):
+        normal = Image.open(img).convert('L')
+        crop=normal.crop((25,37,195,150))
+        ahash = str(imagehash.average_hash(crop))
+        phash = str(imagehash.phash(crop))
+        psimplehash = str(imagehash.phash_simple(crop))
+        dhash = str(imagehash.dhash(crop))
+        vertdhash = str(imagehash.dhash_vertical(crop))
+        whash = str(imagehash.whash(crop))
+        return ahash,phash,psimplehash,phash,vertdhash,whash
 
 def findContours(img):
     orig = img.copy()
@@ -55,7 +73,9 @@ def crop(img,art, screenCnt):
         cv2.imwrite("crop.jpg",crop)
         cv2.imshow("crop",crop)
         cv2.waitKey(0)
-    
-img = cv2.imread('kessig.jpg')
+
+img = cv2.imread('snappingSailbacks/IMG_2803.JPG')
 findContours(img)
-#queryDatabase.checkHashes(getHash('crop.jpg'))
+#binHash = hex_to_binary(getHash('crop.jpg')[0])
+#print binHash
+#queryDatabase.checkHashes(binHash)
