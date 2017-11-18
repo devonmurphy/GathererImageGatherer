@@ -19,7 +19,6 @@ def getHash(img):
         normal = Image.open(img).convert('L')
         normal = normal.resize(size, Image.ANTIALIAS) 
         crop=normal.crop((25,37,195,150))
-        crop.show()
         ahash = str(imagehash.average_hash(crop))
         phash = str(imagehash.phash(crop))
         psimplehash = str(imagehash.phash_simple(crop))
@@ -166,10 +165,13 @@ def crop2(img,art, screenCnt):
     # Final cropped & rotated rectangle
     croppedRotated = cv2.getRectSubPix(cropped, (int(croppedW),int(croppedH)), (size[0]/2, size[1]/2))
 
-img = cv2.imread('snappingSailbacks/1.JPG')
-findContours(img)
-for i in range(0,2):
-    print "----------------------------------"+str(i)+"--------------------------------------"
-    binHash = hex_to_binary(getHash('crop.jpg')[i])
-    print binHash
-    queryDatabase.checkHashes(binHash,i)
+for j in range(1,7):
+    print "IMAGE #: "+str(j)
+    img = cv2.imread('cameraImages/'+str(j)+'.JPG')
+    findContours(img)
+    for i in range(0,1):
+        if(i != 2):
+            print "----------------------------------"+str(i)+"--------------------------------------"
+            binHash = hex_to_binary(getHash('crop.jpg')[i])
+            print binHash
+            queryDatabase.checkHashes(binHash,i,13)

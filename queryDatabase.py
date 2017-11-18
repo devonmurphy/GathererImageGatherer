@@ -18,15 +18,22 @@ def getValuesFromDb(con,cur):
 	names =cur.fetchall()
 	con.commit()
 
-def checkHashes(testHash,index):
+def checkHashes(testHash,index,minDist):
 	global hashes, names
         n=0
+        i=0
+        matches = [("","")]*200
 	for phash in hashes:
             dbHash = str(phash[index])
             hammingDist = hammingDistance(dbHash,testHash)
-	    if (math.fabs(hammingDist)<=13):
-                print names[n] ,math.fabs(hammingDist)
+	    if (math.fabs(hammingDist)<=minDist):
+                matches[i] = (math.fabs(hammingDist),names[n])
+                i+=1
             n+=1
+        sortedMatches = sorted(matches,key= lambda hamming: hamming[0])
+        for x in range(0,i):
+            print sortedMatches[x]
+
 
 def hammingDistance(a,b):
 	count=0
