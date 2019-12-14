@@ -11,6 +11,7 @@ If a card is identified, the information can be input into http://shop.tcgplayer
 # Dependencies
 
 To run these programs you will need the python libraries BeautifulSoup, requests, imagehash, PIL, and psycopg2.
+
 <pre>
     $> pip install -r requirements.txt
     or
@@ -32,6 +33,7 @@ In postgres:
 # Use
 
 **Download Images**
+
 <pre>
     python scrapeImages.py
 </pre>
@@ -51,6 +53,7 @@ Once postgres is installed, create a database and table needed for the python sc
 </pre>
 
 **Build The Database**
+
 <pre>
     python buildDatabase.py
 </pre>
@@ -58,6 +61,7 @@ Once postgres is installed, create a database and table needed for the python sc
 Populates a postgresql database with card name, set, and a perceptual hash of the artwork from the images downloaded with scrapeImages.py
 
 **Test A Card**
+
 <pre>
     python queryDatabase.py
 </pre>
