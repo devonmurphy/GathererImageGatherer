@@ -3,7 +3,7 @@ import os
 import sys
 import imagehash
 import numpy
-import queryDatabase
+from src import queryDatabase
 from PIL import Image
 import psycopg2
 
@@ -40,6 +40,6 @@ def perception_hash(img):
         hash = str(imagehash.phash(normal))
         return int(format(int(hash,16),'064b'))
 
-print(queryDatabase.hammingDistance(gatherer_perception_hash('real-kessig.png'),perception_hash('crop.jpg')))
-print(queryDatabase.hammingDistance(gatherer_simple_hash('real-kessig.png'),simple_hash('crop.jpg')))
-print(queryDatabase.hammingDistance(gatherer_dhash('real-kessig.png'),dhash('crop.jpg')))
+print(queryDatabase.hammingDistance(gatherer_perception_hash('real-kessig.png'), perception_hash('crop.jpg')))
+print(queryDatabase.hammingDistance(gatherer_simple_hash('real-kessig.png'), simple_hash('crop.jpg')))
+print(queryDatabase.hammingDistance(gatherer_dhash('real-kessig.png'), dhash('crop.jpg')))

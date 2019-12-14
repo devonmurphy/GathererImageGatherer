@@ -1,0 +1,25 @@
+# https://hackernoon.com/docker-compose-install-postgresql-for-local-development-environment-ph293zxd
+# Set a volume some that database is not lost after shutting down the container.
+
+version: "3"
+services:
+  db:
+    image: "postgres"
+    container_name: "my_postgres"
+    environment:
+      - POSTGRES_USER=john
+      - POSTGRES_PASSWORD=pwd0123456789
+      - POSTGRES_DB=mydb
+    ports:
+      - "54320:5432"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+  notebook:
+    image: "jupyter/datascience-notebook:9b06df75e445"
+    container_name: "notebook"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work

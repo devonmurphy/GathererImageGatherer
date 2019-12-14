@@ -20,7 +20,7 @@ def getHash(img):
 	dhash = str(imagehash.dhash(crop))
 	vertdhash = str(imagehash.dhash_vertical(crop))
 	whash = str(imagehash.whash(crop))
-	return ahash,phash,psimplehash,dhash,vertdhash,whash 
+	return ahash,phash,psimplehash,dhash,vertdhash,whash
 
 def addToDb(name,set,hashes):
         print hashes,"---",name,"---",set
@@ -29,7 +29,7 @@ def addToDb(name,set,hashes):
         for i in range (0,6):
             command+=",'"+hex_to_binary(hashes[i])+"'"
         command+=");"
-	cur.execute(command)          
+	cur.execute(command)
 	con.commit()
 
 def addHexToDb(name,set,hashes):
@@ -61,10 +61,10 @@ cur.execute("delete from hashes")
 cur.execute("delete from binaryhashes")
 con.commit()
 
-for root, dirs, files in os.walk('cardImages/', topdown=False):
+for root, dirs, files in os.walk('../data/images/', topdown=False):
     for name in files:
 	hold =os.path.join(root, name)
-        if(name!="___images-go-here.txt"):
+        if(name!=".gitignore"):
             hashToAdd = getHash(hold)
             cardInfo = getCardInfo(hold)
 	    addToDb(cardInfo[0],cardInfo[1],hashToAdd)
