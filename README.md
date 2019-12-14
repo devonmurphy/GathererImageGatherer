@@ -61,3 +61,15 @@ Populates a postgresql database with card name, set, and a perceptual hash of th
 <pre>
     python queryDatabase.py
 </pre>
+
+# TODOs
+
+- [x] Reorganize folders
+- [x] Add Docker-Compose to develop without installing Postgres locally
+- [ ] Add a license (i.e. MIT)
+- [ ] Test all python scripts to check function after route refactor
+- [ ] Finish Makefile
+- [ ] Refactor the output paths to download
+- [ ] Add a way to automatically launch sql script once
+- [ ] Update README with makefile and new sections
+- [ ] Add a notebook example
